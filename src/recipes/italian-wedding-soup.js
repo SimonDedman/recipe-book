@@ -4,6 +4,8 @@ const recipe = {
   id: "italian-wedding-soup",
   title: "Italian Wedding Soup",
   source: "Classic Italian-American",
+  cuisine: "Italian",
+  image: "https://images.unsplash.com/photo-1706740006781-3ca0149307e5?w=400&h=300&fit=crop",
   baseServings: 6,
   multiplierOptions: [1, 1.5, 2, 3],
   servingsRange: [4, 18],

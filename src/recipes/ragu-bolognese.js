@@ -4,6 +4,8 @@ const recipe = {
   id: "ragu-bolognese",
   title: "Pressure Cooker Ragù Bolognese",
   source: "Serious Eats",
+  cuisine: "Italian",
+  image: "https://images.unsplash.com/photo-1734356959885-54fe2e99c1cd?w=400&h=300&fit=crop",
   baseServings: 8,
   multiplierOptions: [1, 1.5, 2],
   servingsRange: [4, 16],

@@ -4,6 +4,8 @@ const recipe = {
   id: "gumbo",
   title: "Marsha's Gumbo",
   source: "Marsha's family recipe",
+  cuisine: "Cajun & Creole",
+  image: "https://images.unsplash.com/photo-1689860892307-7db54ab276ba?w=400&h=300&fit=crop",
   baseServings: 6,
   multiplierOptions: [1, 1.5, 2, 3],
   servingsRange: [4, 18],

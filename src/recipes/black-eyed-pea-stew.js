@@ -4,6 +4,8 @@ const recipe = {
   id: "black-eyed-pea-stew",
   title: "Hearty One-Pot Black-Eyed Pea Stew with Kale & Andouille",
   source: "Serious Eats",
+  cuisine: "Cajun & Creole",
+  image: "https://images.unsplash.com/premium_photo-1675798917853-11d04d997979?w=400&h=300&fit=crop",
   baseServings: 4,
   multiplierOptions: [1, 1.5, 2, 3],
   servingsRange: [3, 12],

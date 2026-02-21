@@ -4,6 +4,8 @@ const recipe = {
   id: "chicken-tortilla-soup",
   title: "Chicken Tortilla Soup",
   source: "Home recipe",
+  cuisine: "Mexican",
+  image: "https://images.unsplash.com/photo-1730243338482-78d6ffd943df?w=400&h=300&fit=crop",
   baseServings: 6,
   multiplierOptions: [1, 1.5, 2, 3],
   servingsRange: [4, 18],

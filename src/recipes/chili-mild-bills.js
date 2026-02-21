@@ -4,6 +4,8 @@ const recipe = {
   id: "chili-mild-bills",
   title: "Mild Bill's Bob Coates Championship Chili",
   source: "Mild Bill's Spices, Bob Coates 1999 Terlingua",
+  cuisine: "Chili & Tex-Mex",
+  image: "https://images.unsplash.com/photo-1726514733206-0aef2e150718?w=400&h=300&fit=crop",
   baseServings: 5,
   multiplierOptions: [1, 1.5, 2, 3, 4],
   servingsRange: [3, 20],

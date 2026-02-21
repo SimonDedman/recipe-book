@@ -4,6 +4,8 @@ const recipe = {
   id: "chicken-korma",
   title: "Chicken Korma & Pilau Rice",
   source: "Josh & Sheddy",
+  cuisine: "Indian",
+  image: "https://images.unsplash.com/premium_photo-1723708871094-2c02cf5f5394?w=400&h=300&fit=crop",
   baseServings: 4,
   multiplierOptions: [1, 1.5, 2, 3, 3.5],
   servingsRange: [2, 14],

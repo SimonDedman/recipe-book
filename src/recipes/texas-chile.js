@@ -4,6 +4,8 @@ const recipe = {
   id: "texas-chile",
   title: "Real Texas Chile Con Carne",
   source: "Serious Eats",
+  cuisine: "Chili & Tex-Mex",
+  image: "https://images.unsplash.com/photo-1588944651162-57080995b92d?w=400&h=300&fit=crop",
   baseServings: 6,
   multiplierOptions: [1, 1.5, 2, 3],
   servingsRange: [4, 18],

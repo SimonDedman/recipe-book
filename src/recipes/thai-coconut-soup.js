@@ -4,6 +4,8 @@ const recipe = {
   id: "thai-coconut-soup",
   title: "Thai Coconut Soup (Shrimp)",
   source: "AllRecipes",
+  cuisine: "Thai",
+  image: "https://images.unsplash.com/premium_photo-1669150849060-1d6a6dabad14?w=400&h=300&fit=crop",
   baseServings: 4,
   multiplierOptions: [1, 1.5, 2, 3],
   servingsRange: [2, 12],

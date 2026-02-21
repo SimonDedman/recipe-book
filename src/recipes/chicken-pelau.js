@@ -4,6 +4,8 @@ const recipe = {
   id: "chicken-pelau",
   title: "Chicken Pelau (Trinidad)",
   source: "Uncle Clyde, Paramin, Trinidad & Tobago",
+  cuisine: "Caribbean",
+  image: "https://images.unsplash.com/premium_photo-1701294739171-d6ca2b5821be?w=400&h=300&fit=crop",
   baseServings: 4,
   multiplierOptions: [1, 1.5, 2, 3],
   servingsRange: [3, 12],

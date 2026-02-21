@@ -4,6 +4,8 @@ const recipe = {
   id: "chili-gquebbq",
   title: "GqueBBQ Chili Con Carne",
   source: "GqueBBQ YouTube",
+  cuisine: "Chili & Tex-Mex",
+  image: "https://images.unsplash.com/photo-1658308766948-01c85ade2737?w=400&h=300&fit=crop",
   baseServings: 5,
   multiplierOptions: [1, 1.5, 2, 3, 4],
   servingsRange: [3, 20],

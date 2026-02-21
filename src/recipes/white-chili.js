@@ -4,6 +4,8 @@ const recipe = {
   id: "white-chili",
   title: "The Best White Chili With Chicken",
   source: "Serious Eats",
+  cuisine: "Chili & Tex-Mex",
+  image: "https://images.unsplash.com/photo-1581597096506-acefe678d02b?w=400&h=300&fit=crop",
   baseServings: 6,
   multiplierOptions: [1, 1.5, 2, 3],
   servingsRange: [4, 18],

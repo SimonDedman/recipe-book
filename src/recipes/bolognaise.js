@@ -4,6 +4,8 @@ const recipe = {
   id: "bolognaise",
   title: "Spaghetti Bolognaise",
   source: "Classic British-Italian",
+  cuisine: "Italian",
+  image: "https://images.unsplash.com/photo-1614777986387-015c2a89b696?w=400&h=300&fit=crop",
   baseServings: 5,
   multiplierOptions: [1, 1.5, 2, 2.5, 3, 4],
   servingsRange: [3, 20],

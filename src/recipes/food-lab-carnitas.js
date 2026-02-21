@@ -4,6 +4,8 @@ const recipe = {
   id: "food-lab-carnitas",
   title: "Food Lab No-Waste Tacos de Carnitas",
   source: "Serious Eats, Food Lab",
+  cuisine: "Mexican",
+  image: "https://images.unsplash.com/premium_photo-1661780139424-d582ec7aa9e2?w=400&h=300&fit=crop",
   baseServings: 4,
   multiplierOptions: [1, 1.5, 2, 3],
   servingsRange: [3, 12],

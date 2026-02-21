@@ -4,6 +4,8 @@ const recipe = {
   id: "jambalaya",
   title: "Creole-Style Red Jambalaya w/ Chicken & Sausage",
   source: "Serious Eats, Daniel Gritzer",
+  cuisine: "Cajun & Creole",
+  image: "https://images.unsplash.com/premium_photo-1667807522175-bc48128e951e?w=400&h=300&fit=crop",
   baseServings: 8,
   multiplierOptions: [1, 1.5, 2, 2.5, 3, 3.5, 4],
   servingsRange: [4, 20],

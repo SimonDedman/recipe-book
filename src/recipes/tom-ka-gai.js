@@ -4,6 +4,8 @@ const recipe = {
   id: "tom-ka-gai",
   title: "Tom Ka Gai (Coconut Chicken Soup)",
   source: "AllRecipes",
+  cuisine: "Thai",
+  image: "https://images.unsplash.com/photo-1585417791023-a5a6164b2646?w=400&h=300&fit=crop",
   baseServings: 2,
   multiplierOptions: [1, 2, 3, 4, 5],
   servingsRange: [2, 10],

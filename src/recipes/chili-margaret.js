@@ -4,6 +4,8 @@ const recipe = {
   id: "chili-margaret",
   title: "Margaret Nadeau CASI Championship Chili",
   source: "Margaret Nadeau, CASI Chili Winner",
+  cuisine: "Chili & Tex-Mex",
+  image: "https://images.unsplash.com/photo-1666819632298-fe15dc7d4c34?w=400&h=300&fit=crop",
   baseServings: 5,
   multiplierOptions: [1, 1.5, 2, 3, 4],
   servingsRange: [3, 20],

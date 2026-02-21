@@ -4,6 +4,8 @@ const recipe = {
   id: "slow-tomato-sauce",
   title: "The Best Slow-Cooked Tomato Sauce",
   source: "Serious Eats",
+  cuisine: "Italian",
+  image: "https://images.unsplash.com/photo-1472476443507-c7a5948772fc?w=400&h=300&fit=crop",
   baseServings: 8,
   multiplierOptions: [1, 1.5, 2],
   servingsRange: [4, 16],

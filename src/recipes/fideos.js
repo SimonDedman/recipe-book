@@ -4,6 +4,8 @@ const recipe = {
   id: "fideos",
   title: "Campfire Fideos, Chicken & Chorizo",
   source: "Amalgamation of paella/fideos recipes, adapted for pre-prep",
+  cuisine: "Spanish",
+  image: "https://images.unsplash.com/premium_photo-1675707499311-726434ce10fc?w=400&h=300&fit=crop",
   baseServings: 4,
   multiplierOptions: [1, 1.5, 2, 3, 4, 5],
   servingsRange: [2, 23],

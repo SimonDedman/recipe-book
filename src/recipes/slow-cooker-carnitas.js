@@ -4,6 +4,8 @@ const recipe = {
   id: "slow-cooker-carnitas",
   title: "Slow Cooker Pork Carnitas",
   source: "Damn Delicious",
+  cuisine: "Mexican",
+  image: "https://images.unsplash.com/photo-1768204044545-475dec28ec05?w=400&h=300&fit=crop",
   baseServings: 8,
   multiplierOptions: [1, 1.5, 2, 3],
   servingsRange: [4, 24],

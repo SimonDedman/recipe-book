@@ -4,6 +4,8 @@ const recipe = {
   id: "chicken-tinga",
   title: "Easy One-Pot Chicken Tinga",
   source: "Serious Eats",
+  cuisine: "Mexican",
+  image: "https://images.unsplash.com/photo-1587430211995-0b5541f72085?w=400&h=300&fit=crop",
   baseServings: 4,
   multiplierOptions: [1, 1.5, 2, 3],
   servingsRange: [2, 12],

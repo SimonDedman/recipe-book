@@ -4,6 +4,8 @@ const recipe = {
   id: "black-bean-soup",
   title: "Black Bean Soup with Chorizo & Braised Chicken",
   source: "Serious Eats",
+  cuisine: "Latin American",
+  image: "https://images.unsplash.com/photo-1593179241557-bce1eb92e47e?w=400&h=300&fit=crop",
   baseServings: 4,
   multiplierOptions: [1, 1.5, 2, 3],
   servingsRange: [3, 12],
