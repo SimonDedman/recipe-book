@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import recipes from "./recipes/index.js";
 import RecipeViewer from "./components/RecipeViewer.jsx";
 
@@ -48,9 +48,33 @@ function RecipeCard({ recipe, onClick }) {
   );
 }
 
+function getRecipeFromHash() {
+  const hash = window.location.hash.slice(1);
+  return hash ? recipes.find((r) => r.id === hash) || null : null;
+}
+
 export default function App() {
-  const [activeRecipe, setActiveRecipe] = useState(null);
+  const [activeRecipe, setActiveRecipe] = useState(getRecipeFromHash);
   const [cuisineFilter, setCuisineFilter] = useState("All Cuisines");
+
+  const selectRecipe = (recipe) => {
+    setActiveRecipe(recipe);
+    window.history.pushState(null, "", `#${recipe.id}`);
+  };
+  const clearRecipe = () => {
+    setActiveRecipe(null);
+    window.history.pushState(null, "", window.location.pathname);
+  };
+
+  useEffect(() => {
+    const onHashChange = () => setActiveRecipe(getRecipeFromHash());
+    window.addEventListener("hashchange", onHashChange);
+    window.addEventListener("popstate", onHashChange);
+    return () => {
+      window.removeEventListener("hashchange", onHashChange);
+      window.removeEventListener("popstate", onHashChange);
+    };
+  }, []);
 
   // If only one recipe, go straight to it
   if (recipes.length === 1 && !activeRecipe) {
@@ -64,7 +88,7 @@ export default function App() {
   if (activeRecipe) {
     return (
       <div className="max-w-4xl mx-auto p-4">
-        <RecipeViewer recipe={activeRecipe} onBack={() => setActiveRecipe(null)} />
+        <RecipeViewer recipe={activeRecipe} onBack={clearRecipe} />
       </div>
     );
   }
@@ -100,7 +124,7 @@ export default function App() {
           onChange={(e) => setCuisineFilter(e.target.value)}
           className="px-3 py-2 rounded-lg border border-stone-300 bg-white text-stone-700 text-sm focus:outline-none focus:ring-2 focus:ring-stone-400"
         >
-          <option>All Cuisines ({recipes.length})</option>
+          <option value="All Cuisines">All Cuisines ({recipes.length})</option>
           {CUISINE_ORDER.filter((c) => cuisineCounts[c]).map((cuisine) => (
             <option key={cuisine} value={cuisine}>
               {cuisine} ({cuisineCounts[cuisine]})
@@ -119,7 +143,7 @@ export default function App() {
             </div>
             <div className="grid gap-4">
               {group.map((recipe) => (
-                <RecipeCard key={recipe.id} recipe={recipe} onClick={() => setActiveRecipe(recipe)} />
+                <RecipeCard key={recipe.id} recipe={recipe} onClick={() => selectRecipe(recipe)} />
               ))}
             </div>
           </div>

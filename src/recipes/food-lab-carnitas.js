@@ -53,7 +53,7 @@ const recipe = {
     return [
       { id: "P1", name: `Season ${s(3)} lb pork cubes generously with kosher salt`, duration: prepScale(3, mult), category: "prep", step: 1 },
       { id: "P2", name: `Quarter 1 onion; halve ${si(6)} garlic cloves; cut ${si(1)} orange in half`, duration: prepScale(4, mult), category: "prep", step: 1 },
-      { id: "P3", name: `Preheat oven to 275°F (135°C)`, duration: 1, category: "prep", step: 1, note: "~15 min to heat" },
+      { id: "P3", name: `Preheat oven to 275°F (135°C)`, duration: 1, category: "prep", step: 1, note: "~20 min to full heat; fine to start braise in warming oven" },
       { id: "C1", name: `Arrange seasoned pork in 9×13 casserole; tuck in quartered onion, ${si(6)} garlic halves, ${si(2)} bay leaves, ${si(1)} cinnamon stick; squeeze orange over top; drizzle ${sf(0.25)} cup vegetable oil`, duration: prepScale(5, mult), category: "cook", step: 2 },
       { id: "C2", name: `Cover tightly with foil; braise in oven at 275°F for 3½ hours`, duration: 210, category: "cook", step: 2, note: "Pork should be very tender" },
       { id: "P4", name: `Husk and halve ${s(1.5)} lb tomatillos; halve ${si(2)} jalapeños; slice ${si(1)} onion into rings`, duration: prepScale(8, mult), category: "prep", step: 3 },

@@ -94,6 +94,9 @@ const recipe = {
       { id: "C7", name: `Add ${s(240)}ml cream, cashew paste, ${s(200)}ml boiling water; simmer uncovered 15 min until sauce thickens`, duration: 15, category: "cook", step: 3 },
       { id: "C8", name: `Garnish korma with fresh coriander; keep warm on lowest heat`, duration: 2, category: "cook", step: 4 },
 
+      // ── OVEN PREHEAT ──
+      { id: "P7", name: `Preheat oven to 350°F (175°C)`, duration: 1, category: "prep", step: 3, note: "~20 min to heat; start when korma lid goes on" },
+
       // ── PILAU RICE COOK (parallel with korma from C6 onward) ──
       { id: "R1", name: `Heat ${si(3)} tbsp veg oil in ovenproof pan; fry cinnamon stick, ${si(4)} cloves, ${si(1)} bay ${pl(si(1), "leaf")} 3 min`, duration: 3, category: "cook", step: 3, note: "Start ~10 min after korma C5" },
       { id: "R2", name: `Add sliced onion, garlic, ginger, green chili; sauté 10 min until golden`, duration: 10, category: "cook", step: 3 },
@@ -123,7 +126,7 @@ const recipe = {
     t += j("C3").duration + j("C4").duration;
     push(["C5"], j("C5").name);
     t += j("C5").duration;
-    push(["C6"], `Korma: ${j("C6").name}`);
+    push(["P7", "C6"], `${j("P7").name}. Korma: ${j("C6").name}`);
     push(["R1"], `⭐ PARALLEL — Rice: ${j("R1").name}`);
     t += j("R1").duration;
     push(["R2"], `Rice: ${j("R2").name}`);
@@ -132,7 +135,7 @@ const recipe = {
     t += j("R2").duration;
     push(["R3"], `Rice: ${j("R3").name}`);
     t += j("R3").duration;
-    push(["R4"], `Preheat oven 350°F. Rice: add stock, into oven`);
+    push(["R4"], `Rice: add stock, into oven at 350°F`);
     push(["C7"], `Korma: ${j("C7").name}`);
     t += Math.max(j("R4").duration, j("C7").duration);
     push(["R5"], `Rice: ${j("R5").name}`);
@@ -176,14 +179,14 @@ const recipe = {
     t += j("C4").duration;
     push(["C5"], j("C5").name, "cook");
     t += j("C5").duration;
-    push(["C6"], `Korma: ${j("C6").name}`, "cook");
+    push(["P7", "C6"], `${j("P7").name}. Korma: ${j("C6").name}`, "cook");
     push(["R1"], `PARALLEL — Rice: ${j("R1").name}`, "cook");
     t += j("R1").duration;
     push(["R2"], `Rice: ${j("R2").name}`, "cook");
     t += Math.max(j("C6").duration - j("R1").duration, 0) + j("R2").duration;
     push(["R3"], `Rice: ${j("R3").name}`, "cook");
     t += j("R3").duration;
-    push(["R4"], `Preheat oven 350°F. Rice: add stock, into oven`, "cook");
+    push(["R4"], `Rice: add stock, into oven at 350°F`, "cook");
     push(["C7"], `Korma: ${j("C7").name}`, "cook");
     t += Math.max(j("R4").duration, j("C7").duration);
     push(["R5"], `Rice: ${j("R5").name}`, "cook");
@@ -197,23 +200,23 @@ const recipe = {
   deps: {
     strict: {
       M1: [],
-      P1: ["M1"], P2: [], P3: [], P4: [], P5: [], P6: [],
+      P1: ["M1"], P2: [], P3: [], P4: [], P5: [], P6: [], P7: [],
       C1: ["P1", "P2", "P3", "P4", "M1"],
       C2: ["C1"], C3: ["C2"], C4: ["C3"],
       C5: ["C4", "M1"], C6: ["C5"],
       C7: ["C6"], C8: ["C7"],
       R1: ["P5", "P6"], R2: ["R1"], R3: ["R2", "P5"],
-      R4: ["R3"], R5: ["R4"],
+      R4: ["R3", "P7"], R5: ["R4"],
     },
     optimized: {
       M1: [],
-      P1: ["M1"], P2: [], P3: [], P4: [], P5: [], P6: [],
+      P1: ["M1"], P2: [], P3: [], P4: [], P5: [], P6: [], P7: [],
       C1: ["P1", "P2", "P3"],
       C2: ["C1"], C3: ["C2"], C4: ["C3"],
       C5: ["C4", "M1"], C6: ["C5"],
       C7: ["C6"], C8: ["C7"],
       R1: ["P5", "P6", "C5"], R2: ["R1"], R3: ["R2"],
-      R4: ["R3"], R5: ["R4"],
+      R4: ["R3", "P7"], R5: ["R4"],
     },
   },
 };

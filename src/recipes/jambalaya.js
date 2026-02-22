@@ -97,7 +97,7 @@ const recipe = {
     const sched = [];
     const push = (tasks, note) => { sched.push({ mins: t, tasks, note }); };
 
-    push(["P3", "P1"], `Turn on oven. ${j("P1").name.split(";")[0]}`);
+    push(["P1"], j("P1").name.split(";")[0]);
     t += j("P1").duration;
     push(["P2"], j("P2").name);
     t += j("P2").duration;
@@ -112,7 +112,7 @@ const recipe = {
     t += 5;
     push(["C3"], "Dice rested chicken into ½-inch chunks");
     t += 2;
-    push(["C4"], j("C4").name);
+    push(["P3", "C4"], `${j("P3").name}. ${j("C4").name}`);
     t += j("C4").duration;
     push(["C5"], `${j("C5").name} (8 min)`);
     push(["P10"], `⭐ GAP: ${j("P10").name}`);
@@ -165,14 +165,14 @@ const recipe = {
     const prepEnd = t;
     push([], "✅ ALL PREP DONE — Clean up, delis loaded, ready to cook", "prep");
 
-    push(["P3"], j("P3").name, "cook");
-    t += j("P3").duration;
     push(["C1"], j("C1").name, "cook");
     t += j("C1").duration;
     push(["C2"], j("C2").name, "cook");
     t += j("C2").duration;
     push(["C3"], `Rest chicken 5 min, dice into ½-inch chunks`, "cook");
     t += j("C3").duration;
+    push(["P3"], j("P3").name, "cook");
+    t += j("P3").duration;
     push(["C4"], j("C4").name, "cook");
     t += j("C4").duration;
     push(["C5"], `${j("C5").name} (8 min)`, "cook");

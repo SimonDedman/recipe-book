@@ -17,18 +17,31 @@ function JobCard({ job, compact = false }) {
   );
 }
 
-function TimelineView({ schedule, jobs, title, description, prepPhaseEnd }) {
+function fmtClockTime(totalMinutesFromMidnight) {
+  let m = ((totalMinutesFromMidnight % 1440) + 1440) % 1440;
+  const h24 = Math.floor(m / 60);
+  const min = Math.round(m % 60);
+  const ampm = h24 < 12 ? "AM" : "PM";
+  const h12 = h24 === 0 ? 12 : h24 > 12 ? h24 - 12 : h24;
+  return `${h12}:${String(min).padStart(2, "0")}${ampm}`;
+}
+
+function TimelineView({ schedule, jobs, title, description, prepPhaseEnd, serveTime }) {
   const jobMap = {};
   jobs.forEach((j) => (jobMap[j.id] = j));
   const totalMins = schedule[schedule.length - 1].mins;
+
+  const serveMins = serveTime
+    ? parseInt(serveTime.split(":")[0]) * 60 + parseInt(serveTime.split(":")[1])
+    : null;
 
   return (
     <div className="mb-8">
       <h2 className="text-xl font-bold mb-1">{title}</h2>
       <p className="text-sm text-stone-500 mb-4">{description}</p>
       <div className="flex items-center gap-3 p-2 mb-1 border-b border-stone-300">
-        <div className="font-mono text-xs font-bold text-stone-400 w-14 shrink-0 text-center">Elapsed</div>
-        <div className="font-mono text-xs font-bold text-stone-400 w-14 shrink-0 text-center">Left</div>
+        <div className={`font-mono text-xs font-bold text-stone-400 ${serveMins !== null ? "w-16" : "w-14"} shrink-0 text-center`}>{serveMins !== null ? "Time" : "Elapsed"}</div>
+        <div className={`font-mono text-xs font-bold text-stone-400 ${serveMins !== null ? "w-16" : "w-14"} shrink-0 text-center`}>Left</div>
         <div className="flex-1 text-xs font-bold text-stone-400">Task</div>
       </div>
       <div className="space-y-1">
@@ -47,16 +60,24 @@ function TimelineView({ schedule, jobs, title, description, prepPhaseEnd }) {
           if (prepPhaseEnd !== undefined && slot.phase === "cook") {
             elapsedMins = slot.mins - prepPhaseEnd;
           }
-          const elapsed = fmtTime(elapsedMins);
           const remaining = totalMins - slot.mins;
           const countdown = remaining === 0 ? "T-0:00" : fmtCountdown(remaining);
 
+          let timeDisplay;
+          if (prepPhaseEnd !== undefined && isDone) {
+            timeDisplay = "—";
+          } else if (serveMins !== null) {
+            timeDisplay = fmtClockTime(serveMins - totalMins + slot.mins);
+          } else {
+            timeDisplay = fmtTime(elapsedMins);
+          }
+
           return (
             <div key={i} className={`flex items-start gap-3 p-2 rounded ${rowClass}`}>
-              <div className="font-mono text-sm font-bold text-stone-600 w-14 shrink-0 text-center">
-                {prepPhaseEnd !== undefined && isDone ? "—" : elapsed}
+              <div className={`font-mono text-sm font-bold text-stone-600 ${serveMins !== null ? "w-16" : "w-14"} shrink-0 text-center`}>
+                {timeDisplay}
               </div>
-              <div className="font-mono text-sm font-bold text-red-400 w-14 shrink-0 text-center">{countdown}</div>
+              <div className={`font-mono text-sm font-bold text-red-400 ${serveMins !== null ? "w-16" : "w-14"} shrink-0 text-center`}>{countdown}</div>
               <div className="flex-1">
                 <div className="flex flex-wrap gap-1 mb-1">
                   {slot.tasks.map((tid, j) =>
@@ -178,6 +199,7 @@ export default function RecipeViewer({ recipe, onBack }) {
   const [tab, setTab] = useState("optimized");
   const [mult, setMult] = useState(2);
   const [servings, setServings] = useState(recipe.baseServings * 2);
+  const [serveTime, setServeTime] = useState("");
 
   const handleMultChange = (newMult) => {
     setMult(newMult);
@@ -250,6 +272,23 @@ export default function RecipeViewer({ recipe, onBack }) {
             ))}
           </select>
         </div>
+        <div className="flex items-center gap-2">
+          <label className="text-sm font-medium text-stone-700">Serve at:</label>
+          <input
+            type="time"
+            value={serveTime}
+            onChange={(e) => setServeTime(e.target.value)}
+            className="border border-stone-300 rounded px-2 py-1 text-sm font-bold bg-white"
+          />
+          {serveTime && (
+            <button
+              onClick={() => setServeTime("")}
+              className="text-xs text-stone-400 hover:text-stone-600"
+            >
+              clear
+            </button>
+          )}
+        </div>
         <div className="text-sm text-stone-500">
           {cans} {cans > 1 ? "cans" : "can"} tomatoes · {Math.ceil(mult)} large ziploc{Math.ceil(mult) > 1 ? "s" : ""}
         </div>
@@ -289,6 +328,7 @@ export default function RecipeViewer({ recipe, onBack }) {
             jobs={jobs}
             title="Optimized Timeline"
             description={`Parallelized, filling gaps. ⭐ = dead time. Wall clock: ~${fmtTime(optimizedTotal)}.`}
+            serveTime={serveTime}
           />
         )}
         {tab === "preprep" && (
@@ -298,6 +338,7 @@ export default function RecipeViewer({ recipe, onBack }) {
             title="Full Pre-Prep Timeline"
             description={`All prep before oven. Zero multitasking. Wall clock: ~${fmtTime(prePrepTotal)}. Elapsed resets at cook phase.`}
             prepPhaseEnd={prepEnd}
+            serveTime={serveTime}
           />
         )}
       </div>
